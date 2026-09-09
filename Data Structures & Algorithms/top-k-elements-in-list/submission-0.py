@@ -1,0 +1,16 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        seen={}
+        freq=[[] for i in range(len(nums)+1)]
+        res=[]
+        for n in nums:
+            seen[n]=seen.get(n,0)+1
+        
+        for n,c in seen.items():
+            freq[c].append(n)
+        
+        for i in range(len(freq)-1,0,-1):
+            for n in freq[i]:
+                res.append(n)
+                if len(res)==k:
+                    return res
